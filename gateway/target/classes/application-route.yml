@@ -1,0 +1,20 @@
+spring:
+  cloud:
+    gateway:
+#      globalcors:
+#        cors-configurations:
+#          '[/**]':
+#            allowedOrigins: "*"
+#            allowedMethods: "*"
+#            allowedHeaders: "*"
+#            allowCredentials: true
+      routes:
+        - id: service-post
+          uri: lb://service-post
+          predicates:
+            - Path=/post/**
+        - id: service-friend
+          uri: lb://service-comment
+          predicates:
+            - Path=/comment/**
+

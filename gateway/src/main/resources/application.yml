@@ -1,0 +1,47 @@
+spring:
+  profiles:
+    include: route
+  application:
+    name: gateway
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 10.236.241.105:8848
+        username: nacos
+        password: nacos
+  data:
+    redis:
+      host: 10.236.241.105
+      port: 6379
+      lettuce:
+        pool:
+          max-active: 8
+          max-idle: 8
+          min-idle: 0
+          max-wait: 10000ms
+  datasource:
+    url: jdbc:mysql://10.236.241.105:3308/nacos?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&serverTimezone=Asia/Shanghai
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: 123
+#  security:
+#    oauth2:
+#      client:
+#        registration:
+#          WeiBo: # 客户端名称可自定义（如google, okta）
+#              client-id: client  # 从环境变量注入
+#              client-secret: 13546548184w68a46s84a68f46w464f1w6a8
+#              authorization-grant-type: authorization_code  # 推荐使用授权码模式
+#              redirect-uri: http://localhost:9010/auth/login
+#              scope: user:email  # 按需限制作用域
+#        provider:
+#          WeiBo: # 需与registration名称一致
+#              authorization-uri: http://localhost:9010/auth/oauth/authorize
+#              token-uri: http://localhost:9010/auth/oauth/token
+#              user-info-uri: http://localhost:9010/auth/oauth/userinfo
+server:
+  port: 8080
+logging:
+  level:
+    org.example.gateway: debug
+    org.springframework.cloud.gateway: debug
